@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LearnHere</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
+    />
+    <!-- Font Awesome Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .header {
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #fff;
+      }
+
+      .header__logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .header__logo-image {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      .header__logo-text {
+        font-size: 40px;
+        font-weight: 900;
+        color: #007bff;
+      }
+
+      .header__nav {
+        display: flex;
+        gap: 20px;
+      }
+
+      .header__nav-link {
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        color: #000;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .header__nav-link:hover {
+        color: #007bff;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+
+      .header__profile {
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .header__menu-icon {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* Auth Container */
+      .header__auth-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .header__auth-link {
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        color: #000;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .header__auth-link:hover {
+        color: #007bff;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+
+      .header__account-icon {
+        font-size: 24px;
+        cursor: pointer;
+        color: #000;
+        margin-right: 15px;
+        margin-left: 5px;
+      }
+      .header__menu-icon_new {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* Mobile Responsive Design */
+      @media (max-width: 768px) {
+        body {
+          margin: 0;
+          font-family: "Inter", sans-serif;
+        }
+        .header {
+          width: auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 20px;
+        }
+
+        .header__logo-image {
+          height: 25px;
+        }
+
+        .header__logo-text {
+          font-size: 20px;
+          font-weight: 900;
+          color: #007bff;
+        }
+
+        .header__nav {
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          gap: 10px;
+          background-color: #fff;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          padding: 10px 0;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 999;
+        }
+
+        .header__menu-icon {
+          display: none;
+          font-size: 24px;
+          cursor: pointer;
+        }
+        .header__menu-icon_new {
+          display: flex;
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        .header__auth-container {
+          font-size: 8px;
+          display: flex;
+          align-items: end;
+          gap: 5px;
+          margin-left: 60px;
+        }
+        .header__auth-link {
+          font-size: 8px;
+          padding: 0;
+        }
+
+        .header__nav.open {
+          display: flex;
+        }
+
+        .header__nav-link {
+          padding: 12px;
+          font-size: 18px;
+          text-align: center;
+          width: 100%;
+          display: block;
+          border-bottom: 1px solid #ddd;
+        }
+
+        .header__nav-link:last-child {
+          border-bottom: none;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* Footer Styles */
+      .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        position: relative;
+        width: 100%;
+        position: absolute;
+        top: 520%;
+      }
+      .footer1 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+      }
+      .footer2 {
+        width: 100%;
+      }
+      .footer-left {
+        height: 350px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: left;
+        flex-basis: 40%;
+        background-color: #333;
+        padding: 20px;
+      }
+      .footer-right {
+        font-size: 15px;
+        display: flex;
+        height: 350px;
+        flex-direction: column;
+        gap: 5px;
+        text-align: right;
+        flex-basis: 60%;
+        background-color: #09062a;
+        padding: 20px;
+      }
+      .footer-right span {
+        font-weight: 400;
+      }
+      .footer-right .company-name {
+        font-weight: 700;
+      }
+      .footer-logoName {
+        font-size: 45px;
+      }
+      .footer_bottom {
+        height: 70px;
+        width: 100%;
+        background-color: #d5d5d5;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .footer-logoName {
+          font-size: 25px;
+        }
+        .footer {
+          flex-direction: column;
+          text-align: center;
+          position: absolute;
+          top: 320%;
+        }
+        .footer1 {
+          display: flex;
+          flex-direction: column;
+        }
+        .footer_bottom {
+          height: 40px;
+        }
+        .footer-left {
+          width: 100%;
+          height: 150px;
+        }
+        .footer-right {
+          width: 100%;
+          height: 150px;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+    <style>
+      :root {
+        --image-0: url(./graphics/graphics0.png);
+        --image-1: url(./graphics/graphics1.png);
+        --image-2: url(./graphics/graphics2.png);
+        --image-3: url(./graphics/graphics3.png);
+        --image-4: url(./graphics/graphics4.png);
+        --image-5: url(./graphics/graphics5.png);
+        --image-6: url(./graphics/graphics6.png);
+        --custom-width: 100vw;
+        --design-width: 1440;
+        --ratio: calc(var(--custom-width) / var(--design-width));
+      }
+
+      /* Default classes */
+      /* .pos-abs {
+          position: absolute;
+        }
+        .fill-parent {
+          width: 100%;
+          height: 100%;
+        }
+        .bg-contain {
+          background-size: contain;
+        }
+        .bg-cover {
+          background-size: cover;
+        }
+        .bg-auto {
+          background-size: auto;
+        }
+        .bg-crop {
+          background-size: 100% 100%;
+        }
+        .bg-no-repeat {
+          background-repeat: no-repeat;
+        }
+        .pos-init {
+          top: 0px;
+          left: 0px;
+        }
+        .image-div {
+          background-color: transparent;
+          background-position: center;
+        } */
+      /* Default classes end */
+
+      /* Default classes */
+      .pos-abs {
+        position: absolute;
+      }
+      .fill-parent {
+        width: 100%;
+        height: auto;
+      }
+
+      .bg-contain {
+        background-size: contain;
+      }
+      .bg-cover {
+        background-size: cover;
+      }
+      .bg-auto {
+        background-size: auto;
+      }
+      .bg-crop {
+        background-size: 100% 100%;
+      }
+      .bg-no-repeat {
+        background-repeat: no-repeat;
+      }
+      .pos-init {
+        top: 0px;
+        left: 0px;
+      }
+      .image-div {
+        background-color: transparent;
+        background-position: center;
+      }
+      /* Default classes end */
+      body {
+        margin: 0px 0px;
+        padding: 0px;
+      }
+      .parent-div {
+        position: relative;
+        margin: auto;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      .playlist-page-23230 {
+        width: 100%;
+        background: #ffffffff;
+      }
+      .header-2-27240 {
+        width: 100%;
+        height: 2.82%;
+        top: 0%;
+        left: 0%;
+        opacity: 1;
+        z-index: 1;
+        transform: rotate(0deg);
+        overflow: hidden;
+        background: #ffffffff;
+      }
+      .nodeBg-27242 {
+        background-position: center;
+        background-repeat: no-repeat;
+        width: calc(182.49999459087866 * var(--ratio));
+        height: calc(186.62501728767688 * var(--ratio));
+        left: calc(-45.83332972725243 * var(--ratio));
+        top: calc(-54.375004840549536 * var(--ratio));
+        object-fit: cover;
+        opacity: 1;
+      }
+      .learn-here-1-27242 {
+        width: 6.11%;
+        height: 61.22%;
+        top: 16.33%;
+        left: 7.5%;
+        opacity: 1;
+        z-index: 1;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .learnhere-27241 {
+        width: 21.32%;
+        height: 58.16%;
+        top: 19.39%;
+        left: 16.11%;
+        opacity: 1;
+        z-index: 0;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .learnhere-27241-0 {
+        font-size: calc(47 * var(--ratio));
+
+        line-height: calc(47 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 900;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #007bffff;
+      }
+      .home-27249 {
+        width: 3.96%;
+        height: 51.02%;
+        top: 25.51%;
+        left: 37.29%;
+        opacity: 1;
+        z-index: 8;
+        transform: rotate(0deg);
+        text-align: center;
+        line-height: 0px;
+      }
+      .home-27249-0,
+      .teachers-27247-0,
+      .lessons-27244-0,
+      .contact-us-27245-0,
+      .about-27246-0 {
+        font-size: calc(20 * var(--ratio));
+
+        line-height: calc(50 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 500;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #000000ff;
+      }
+      .teachers-27247 {
+        width: 6.18%;
+        height: 51.02%;
+        top: 25.51%;
+        left: 43.82%;
+        opacity: 1;
+        z-index: 6;
+        transform: rotate(0deg);
+        text-align: center;
+        line-height: 0px;
+      }
+      .lessons-27244 {
+        width: 5.56%;
+        height: 51.02%;
+        top: 25.51%;
+        left: 51.81%;
+        opacity: 1;
+        z-index: 3;
+        transform: rotate(0deg);
+        text-align: center;
+        line-height: 0px;
+      }
+      .log-out-27243 {
+        width: 5%;
+        height: 51.02%;
+        top: 25.51%;
+        left: 88.06%;
+        opacity: 1;
+        z-index: 2;
+        transform: rotate(0deg);
+        text-align: center;
+        line-height: 0px;
+      }
+      .log-out-27243-0 {
+        font-size: calc(20 * var(--ratio));
+
+        line-height: calc(50 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 400;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #707070ff;
+      }
+      .contact-us-27245 {
+        width: 7.5%;
+        height: 51.02%;
+        top: 26.53%;
+        left: 59.65%;
+        opacity: 1;
+        z-index: 4;
+        transform: rotate(0deg);
+        text-align: center;
+        line-height: 0px;
+      }
+      .about-27246 {
+        width: 4.03%;
+        height: 51.02%;
+        top: 26.53%;
+        left: 70.07%;
+        opacity: 1;
+        z-index: 5;
+        transform: rotate(0deg);
+        text-align: center;
+        line-height: 0px;
+      }
+      .nodeBg-27248,
+      .nodeBg-3214,
+      .nodeBg-3237,
+      .nodeBg-3260,
+      .nodeBg-3283 {
+        object-fit: cover;
+        width: 100%;
+        height: 75%;
+        border-radius: 10px;
+        margin-top: 12px;
+      }
+
+      .ellipse-1-27248 {
+        width: 2.99%;
+        height: 43.88%;
+        top: 29.59%;
+        left: 94.72%;
+        opacity: 1;
+        z-index: 7;
+        transform: rotate(0deg);
+        overflow: hidden;
+        border-radius: 50%;
+      }
+      .nodeBg-27251 {
+        opacity: 1;
+        background-image: var(--image-0);
+      }
+      .vector-27251 {
+        width: 1.94%;
+        height: 22.45%;
+        top: 37.76%;
+        left: 2.5%;
+        opacity: 1;
+        z-index: 9;
+        transform: rotate(0deg);
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+      .rectangle-21-29326 {
+        width: 27.64%;
+        height: 21.74%;
+        top: 2.82%;
+        left: 63.4%;
+        opacity: 1;
+        z-index: 0;
+        transform: rotate(0deg);
+        background: #e8e8e8ff;
+      }
+      .nodeBg-325 {
+        opacity: 1;
+        background-image: var(--image-1);
+      }
+
+      .ellipse-18-325 {
+        width: 4.17%;
+        height: 1.65%;
+        top: 4.22%;
+        left: 4.31%;
+        opacity: 1;
+        z-index: 13;
+        transform: rotate(0deg);
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+      .nodeBg-27255 {
+        background-position: center;
+        background-repeat: no-repeat;
+        width: calc(502.3119725426545 * var(--ratio));
+        height: calc(630.8376213860532 * var(--ratio));
+        left: calc(19 * var(--ratio));
+        top: calc(-48.83759492643009 * var(--ratio));
+        object-fit: cover;
+        opacity: 1;
+      }
+      .rectangle-20-27255 {
+        width: 37.64%;
+        height: 18.78%;
+        top: 4.31%;
+        left: 12.43%;
+        opacity: 1;
+        z-index: 4;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .rectangle-92-3289 {
+        width: 0.14%;
+        height: 0.03%;
+        top: 5.03%;
+        left: 5.56%;
+        opacity: 1;
+        z-index: 16;
+        transform: rotate(0deg);
+        box-shadow: inset 0 0 0 1.5px #d7ffb8ff, inset 0 0 1.5px 0 #d7ffb8ff,
+          inset 0 1.5px 0 0 #d7ffb8ff, inset 1.5px 0 0 0 #d7ffb8ff;
+        border-left: 1px solid #d7ffb8ff;
+        border-right: 1px solid #d7ffb8ff;
+        border-top: 1px solid #d7ffb8ff;
+        border-bottom: 1px solid #d7ffb8ff;
+      }
+      .rectangle-86-326 {
+        width: 0.14%;
+        height: 0.03%;
+        top: 5.03%;
+        left: 6.32%;
+        opacity: 1;
+        z-index: 14;
+        transform: rotate(0deg);
+        box-shadow: inset 0 0 0 1.5px #a5ed6eff, inset 0 0 1.5px 0 #a5ed6eff,
+          inset 0 1.5px 0 0 #a5ed6eff, inset 1.5px 0 0 0 #a5ed6eff;
+        border-left: 1px solid #a5ed6eff;
+        border-right: 1px solid #a5ed6eff;
+        border-top: 1px solid #a5ed6eff;
+        border-bottom: 1px solid #a5ed6eff;
+      }
+      .rectangle-88-328 {
+        width: 0.14%;
+        height: 0.03%;
+        top: 5.03%;
+        left: 7.08%;
+        opacity: 1;
+        z-index: 15;
+        transform: rotate(0deg);
+        box-shadow: inset 0 0 0 1.5px #d7ffb8ff, inset 0 0 1.5px 0 #d7ffb8ff,
+          inset 0 1.5px 0 0 #d7ffb8ff, inset 1.5px 0 0 0 #d7ffb8ff;
+        border-left: 1px solid #d7ffb8ff;
+        border-right: 1px solid #d7ffb8ff;
+        border-top: 1px solid #d7ffb8ff;
+        border-bottom: 1px solid #d7ffb8ff;
+      }
+      .mrs-julia-elit-27256 {
+        width: 26.94%;
+        height: 4.89%;
+        top: 5.38%;
+        left: 42.22%;
+        opacity: 1;
+        z-index: 5;
+        transform: rotate(0deg);
+        text-align: right;
+        line-height: 0px;
+      }
+      .mrs-julia-elit-27256-0 {
+        font-size: calc(70 * var(--ratio));
+
+        line-height: calc(70 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 800;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #090069ff;
+      }
+      .chat-with-me-3212 {
+        width: 3.47%;
+        height: 0.69%;
+        top: 6.01%;
+        left: 4.65%;
+        opacity: 1;
+        z-index: 17;
+        transform: rotate(0deg);
+        text-align: center;
+        line-height: 0px;
+      }
+      .chat-with-me-3212-0 {
+        font-size: calc(10 * var(--ratio));
+
+        line-height: calc(10 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 600;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #0ac800ff;
+      }
+      .chemistry-27257 {
+        width: 13.33%;
+        height: 1.12%;
+        top: 10.27%;
+        left: 53.54%;
+        opacity: 1;
+        z-index: 6;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .chemistry-27257-0 {
+        font-size: calc(32 * var(--ratio));
+
+        line-height: calc(32 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 700;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #707070ff;
+      }
+      .lorem-ipsum-dol-27253 {
+        width: 38.19%;
+        height: 6.56%;
+        top: 12.59%;
+        left: 52.57%;
+        text-align: left;
+        line-height: 0px;
+      }
+      .lorem-ipsum-dol-27253-0 {
+        font-size: calc(32 * var(--ratio));
+
+        line-height: calc(32 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 700;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #000000ff;
+      }
+      .lorem-ipsum-dol-27253-1 {
+        font-size: calc(20 * var(--ratio));
+
+        line-height: calc(20 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 400;
+        color: #000000ff;
+      }
+      .line-3-27254 {
+        width: 22.5%;
+        height: 0%;
+        top: 14.2%;
+        left: 39.79%;
+        opacity: 1;
+        z-index: 3;
+        transform: rotate(90deg);
+        box-shadow: inset 0 0 0 1.5px #007bffff, inset 0 0 1.5px 0 #007bffff,
+          inset 0 1.5px 0 0 #007bffff, inset 1.5px 0 0 0 #007bffff;
+        border-left: 1px solid #007bffff;
+        border-right: 1px solid #007bffff;
+        border-top: 1px solid #007bffff;
+        border-bottom: 1px solid #007bffff;
+      }
+      .learn-vault-30334 {
+        width: 30.94%;
+        height: 1.27%;
+        top: 27.45%;
+        left: 10.49%;
+        opacity: 1;
+        z-index: 12;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .learn-vault-30334-0 {
+        font-size: calc(36 * var(--ratio));
+
+        line-height: calc(36 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 600;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #090069ff;
+      }
+      .lessons_valuet {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 60% 15% 10% 15%;
+        justify-items: center;
+        height: auto;
+        row-gap: 40px;
+      }
+      .pos-abs_my {
+        width: 85.19%;
+        height: 100%;
+        margin-bottom: 10%;
+        border-radius: 10px 10px 10px 10px;
+        background: #ffffffff;
+        justify-items: center;
+        box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+        transition: 0.4s;
+        position: relative;
+      }
+      .rectangle-19-3214,
+      .rectangle-19-3237,
+      .rectangle-19-3260 {
+        width: 94%;
+        top: 2.14%;
+        left: 2.91%;
+      }
+      .union-3216 {
+        width: 21.9%;
+        height: 13%;
+        top: 10.57%;
+        left: 40%;
+        position: absolute;
+        display: none;
+        transition: 0.4s;
+      }
+      .pos-abs_my:hover .union-3216 {
+        opacity: 1;
+        display: flex;
+        /* Changed to flex for better centering support */
+      }
+      .pos-abs_my:hover {
+        box-shadow: 0px 7px 7px 0px rgba(0, 149, 255, 0.584);
+      }
+      .nodeBg-3215 {
+        opacity: 1;
+        background-image: var(--image-2);
+      }
+      .vector-3215 {
+        width: 4.91%;
+        height: 6.26%;
+        top: 28%;
+        left: 6%;
+        position: absolute;
+        display: none;
+        transition: 0.4s;
+      }
+      .pos-abs_my:hover .vector-3215 {
+        opacity: 1s;
+        display: flex;
+      }
+      .union-42988 {
+        width: 6.84%;
+        height: 4.51%;
+        top: 28.43%;
+        left: 85.82%;
+        position: absolute;
+        display: none;
+        transition: 0.4s;
+      }
+      .pos-abs_my:hover .union-42988 {
+        opacity: 1s;
+        display: flex;
+      }
+      .lorem-ipsum-dol-3219 {
+        width: 91.64%;
+        height: 10.62%;
+        text-align: left;
+        line-height: 0px;
+      }
+      .lorem-ipsum-dol-3219-0,
+      .lorem-ipsum-dol-3242-0,
+      .lorem-ipsum-dol-3265-0 {
+        font-size: calc(25 * var(--ratio));
+        line-height: calc(28 * var(--ratio));
+        font-family: Inter;
+        font-weight: 600;
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #090069ff;
+        width: 400px;
+      }
+      .price--rs-10000-3222 {
+        width: 50.64%;
+        margin: 10px 0px 10px 0px;
+        height: 3.21%;
+        text-align: left;
+        line-height: 0px;
+      }
+      .price--rs-10000-3222-0,
+      .price--rs-10000-3245-0,
+      .price--rs-10000-3268-0 {
+        font-size: calc(17 * var(--ratio));
+
+        line-height: calc(17 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 700;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #007bffff;
+      }
+      .lorem-ipsum-dol-3220 {
+        width: 91.64%;
+        height: 14.96%;
+        top: 67.63%;
+        left: 2.73%;
+        opacity: 1;
+        z-index: 5;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .lorem-ipsum-dol-3220-0,
+      .lorem-ipsum-dol-3243-0,
+      .lorem-ipsum-dol-3266-0 {
+        font-size: calc(14 * var(--ratio));
+
+        line-height: calc(14 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 400;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #585858ff;
+      }
+      .union-3224 {
+        width: 6.05%;
+        height: 4.22%;
+        opacity: 1;
+        z-index: 10;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .details-3234 {
+        width: 27.64%;
+        height: 3.66%;
+        text-align: left;
+        line-height: 0px;
+      }
+      .details-3234-0,
+      .details-3257-0,
+      .details-3280-0 {
+        font-size: calc(20 * var(--ratio));
+
+        line-height: calc(20 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 400;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #005fc6ff;
+      }
+      .c-20241128-3221 {
+        width: 10.91%;
+        height: 2.29%;
+        top: 84.12%;
+        left: 85.82%;
+        opacity: 1;
+        z-index: 6;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .c-20241128-3221-0,
+      .c-20241128-3244-0,
+      .c-20241128-3267-0 {
+        font-size: calc(12 * var(--ratio));
+
+        line-height: calc(12 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 400;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #a0a0a0ff;
+      }
+      .rectangle-25-3223 {
+        width: 44.91%;
+        height: 8.55%;
+        top: 89.31%;
+        left: 2.73%;
+        opacity: 1;
+        z-index: 8;
+        transform: rotate(0deg);
+        border-radius: 10px 10px 10px 10px;
+        background: #28a745ff;
+      }
+      .rectangle-26-3230 {
+        width: 46.73%;
+        height: 8.55%;
+        top: 89.31%;
+        left: 50%;
+        opacity: 1;
+        z-index: 11;
+        transform: rotate(0deg);
+        border-radius: 10px 10px 10px 10px;
+        background: #dc3545ff;
+      }
+      .nodeBg-3231,
+      .nodeBg-3254,
+      .nodeBg-3277 {
+        opacity: 1;
+        background-image: var(--image-3);
+      }
+      .vector-5-3231 {
+        width: 6%;
+        height: 4.12%;
+        top: 91.22%;
+        left: 56.09%;
+        opacity: 1;
+        z-index: 12;
+        transform: rotate(0deg);
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+      .add-to-cart-3232 {
+        width: 50%;
+        line-height: 0px;
+        background-color: #28a745;
+        text-align: center;
+        padding: 10px 13px 10px 13px;
+        border-radius: 8px;
+      }
+      .add-to-cart-3232-0,
+      .buy-now-3233-0,
+      .add-to-cart-3255-0,
+      .buy-now-3256-0,
+      .add-to-cart-3278-0,
+      .buy-now-3279-0 {
+        font-size: calc(19 * var(--ratio));
+
+        line-height: calc(24 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 400;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: rgb(255, 255, 255);
+      }
+      .buy-now-3233 {
+        width: 21.09%;
+        height: 4.43%;
+        width: 50%;
+        line-height: 0px;
+        background-color: #dc3545;
+        text-align: center;
+        padding: 10px 13px 10px 13px;
+        border-radius: 8px;
+      }
+      .union-3397 {
+        width: 4.46%;
+        height: 3.61%;
+        top: 92%;
+        left: 8.09%;
+        opacity: 1;
+        z-index: 9;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .frame-60-3236 {
+        width: 38.19%;
+        height: 18.84%;
+        top: 27.64%;
+        left: 53.54%;
+        opacity: 1;
+        z-index: 20;
+        transform: rotate(0deg);
+        overflow: hidden;
+        border-radius: 10px 10px 10px 10px;
+        background: #ffffffff;
+        box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+      }
+      .lorem-ipsum-dol-3242,
+      .lorem-ipsum-dol-3265 {
+        width: 91.64%;
+        height: 9.62%;
+        top: 51.91%;
+        left: 2.73%;
+        opacity: 1;
+        z-index: 1;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .price--rs-10000-3245,
+      .price--rs-10000-3268 {
+        width: 27.64%;
+        height: 3.21%;
+        top: 63.36%;
+        left: 2.55%;
+        opacity: 1;
+        z-index: 4;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .lorem-ipsum-dol-3243,
+      .lorem-ipsum-dol-3266 {
+        width: 91.64%;
+        height: 14.96%;
+        top: 67.63%;
+        left: 2.73%;
+        opacity: 1;
+        z-index: 2;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .union-3247,
+      .union-3270 {
+        width: 6.05%;
+        height: 4.22%;
+        top: 84.06%;
+        left: 6.34%;
+        opacity: 1;
+        z-index: 7;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .details-3257,
+      .details-3280 {
+        width: 17.64%;
+        height: 3.66%;
+        top: 84.12%;
+        left: 2.73%;
+        opacity: 1;
+        z-index: 12;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .c-20241128-3244,
+      .c-20241128-3267 {
+        width: 10.91%;
+        height: 2.29%;
+        top: 84.12%;
+        left: 85.82%;
+        opacity: 1;
+        z-index: 3;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .rectangle-25-3246,
+      .rectangle-25-3269 {
+        width: 44.91%;
+        height: 8.55%;
+        top: 89.31%;
+        left: 2.73%;
+        opacity: 1;
+        z-index: 5;
+        transform: rotate(0deg);
+        border-radius: 10px 10px 10px 10px;
+        background: #28a745ff;
+      }
+      .rectangle-26-3253,
+      .rectangle-26-3276 {
+        width: 46.73%;
+        height: 8.55%;
+        top: 89.31%;
+        left: 50%;
+        opacity: 1;
+        z-index: 8;
+        transform: rotate(0deg);
+        border-radius: 10px 10px 10px 10px;
+        background: #dc3545ff;
+      }
+      .vector-5-3254,
+      .vector-5-3277 {
+        width: 6%;
+        height: 4.12%;
+        top: 91.22%;
+        left: 56.09%;
+        opacity: 1;
+        z-index: 9;
+        transform: rotate(0deg);
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+      .add-to-cart-3255,
+      .add-to-cart-3278 {
+        width: 29.45%;
+        height: 4.43%;
+        top: 91.3%;
+        left: 15.27%;
+        opacity: 1;
+        z-index: 10;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .buy-now-3256,
+      .buy-now-3279 {
+        width: 21.09%;
+        height: 4.43%;
+        top: 91.3%;
+        left: 66.55%;
+        opacity: 1;
+        z-index: 11;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .union-33102,
+      .union-33107 {
+        width: 4.46%;
+        height: 3.61%;
+        top: 92%;
+        left: 8.09%;
+        opacity: 1;
+        z-index: 6;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .rectangle-99-33139 {
+        width: 0.97%;
+        height: 1.98%;
+        top: 32.79%;
+        left: 0%;
+        opacity: 1;
+        z-index: 28;
+        transform: rotate(0deg);
+        background: #f1cf54ff, #f1cf54ff;
+      }
+      .rectangle-98-33138 {
+        width: 0.97%;
+        height: 1.98%;
+        top: 34.77%;
+        left: 0%;
+        opacity: 1;
+        z-index: 25;
+        transform: rotate(0deg);
+        background: #007bffff;
+      }
+      .rectangle-100-33141 {
+        width: 0.97%;
+        height: 1.98%;
+        top: 36.76%;
+        left: 0%;
+        opacity: 1;
+        z-index: 26;
+        transform: rotate(0deg);
+        background: #00e53dff;
+      }
+      .rectangle-101-33143 {
+        width: 0.97%;
+        height: 1.98%;
+        top: 38.74%;
+        left: 0%;
+        opacity: 1;
+        z-index: 27;
+        transform: rotate(0deg);
+        background: #dc3545ff;
+      }
+      .frame-61-3259 {
+        width: 38.19%;
+        height: 18.84%;
+        top: 48.38%;
+        left: 10.63%;
+        opacity: 1;
+        z-index: 19;
+        transform: rotate(0deg);
+        overflow: hidden;
+        border-radius: 10px 10px 10px 10px;
+        background: #ffffffff;
+        box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.25);
+      }
+      .rectangle-22-29329 {
+        width: 100%;
+        height: 100%;
+        background: #333333ff;
+      }
+      .secondLine {
+        width: 100%;
+        height: 130px;
+        position: absolute;
+      }
+      .rectangle-23-29330 {
+        width: 4.58%;
+        height: 100%;
+        background: #b52d44ff;
+        position: absolute;
+        top: 0px;
+        left: 8%;
+      }
+      .rectangle-24-29331 {
+        width: 4.58%;
+        height: 100%;
+        background: #007bffff;
+        position: absolute;
+        top: 0px;
+        left: 14%;
+      }
+      .your-gateway-to-30451 {
+        width: 60.93%;
+        height: 1.21%;
+        text-align: left;
+        line-height: 0px;
+        position: absolute;
+        top: 10%;
+        left: 28%;
+      }
+      .your-gateway-to-30451-0 {
+        font-size: calc(28 * var(--ratio));
+
+        line-height: calc(35 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 500;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: rgb(255, 255, 255);
+      }
+
+      .thirdLine {
+        display: flex;
+      }
+      .nodeBg-3285 {
+        opacity: 1;
+        background-image: var(--image-4);
+      }
+      .rectangle-90-3285 {
+        width: 30.69%;
+        height: 11.16%;
+        top: 105%;
+      }
+      .nodeBg-3287 {
+        opacity: 1;
+        background-image: var(--image-5);
+      }
+      .rectangle-91-3287 {
+        width: 20%;
+        height: 11.16%;
+        top: 73.91%;
+        left: 80%;
+        opacity: 1;
+        z-index: 24;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .rectangle-89-3283 {
+        width: 29.33%;
+        height: 21.61%;
+        object-fit: cover;
+        top: 105%;
+        left: 8.68%;
+        opacity: 1;
+        z-index: 21;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .im-here-to-guid-3284 {
+        width: 60.64%;
+        height: 8.28%;
+        top: 106.4%;
+        left: 33.88%;
+        text-align: end;
+        line-height: 0px;
+      }
+      .im-here-to-guid-3284-0 {
+        font-size: calc(48 * var(--ratio));
+
+        margin-right: 100px;
+        line-height: calc(55 * var(--ratio));
+
+        font-family: Inter;
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #070054ff;
+      }
+      .frame-41-28296 {
+        width: 100%;
+        height: 14.93%;
+        top: 85.07%;
+        left: 0%;
+        opacity: 1;
+        z-index: 7;
+        transform: rotate(0deg);
+        overflow: hidden;
+        background: #09062aff;
+      }
+      .frame-42-28297 {
+        width: 29.44%;
+        height: 85.16%;
+        top: 0%;
+        left: 0%;
+        opacity: 1;
+        z-index: 0;
+        transform: rotate(0deg);
+        overflow: hidden;
+        background: #292929ff;
+      }
+      .learnhere-elern-28299 {
+        width: 70.05%;
+        height: 15.38%;
+        top: 15.61%;
+        left: 8.02%;
+        opacity: 1;
+        z-index: 1;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .learnhere-elern-28299-0 {
+        font-size: calc(48 * var(--ratio));
+
+        line-height: calc(48 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 700;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #ffffffff;
+      }
+      .learnhere-elern-28299-1 {
+        font-size: calc(15 * var(--ratio));
+
+        line-height: calc(15 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 700;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #ffffffff;
+      }
+      .frame-43-28298 {
+        width: 338.68%;
+        height: 23.53%;
+        top: 101.58%;
+        left: 0%;
+        opacity: 1;
+        z-index: 0;
+        transform: rotate(0deg);
+        overflow: hidden;
+        background: #ffffffff;
+      }
+      .nodeBg-28300 {
+        opacity: 1;
+        background-image: var(--image-6);
+      }
+      .rectangle-14-28300 {
+        width: 100%;
+        height: 14.45%;
+        top: 85.36%;
+        left: 0%;
+        opacity: 1;
+        z-index: 1;
+        transform: rotate(0deg);
+        overflow: hidden;
+      }
+      .web-development-28302 {
+        width: 23.19%;
+        height: 3.47%;
+        top: 90.75%;
+        left: 73.96%;
+        opacity: 1;
+        z-index: 3;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .web-development-28302-0 {
+        font-size: calc(15 * var(--ratio));
+
+        line-height: calc(15 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 400;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #000000ff;
+      }
+      .web-development-28302-1 {
+        font-size: calc(15 * var(--ratio));
+
+        line-height: calc(15 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 700;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #000000ff;
+      }
+      .web-development-28302-2 {
+        font-size: calc(15 * var(--ratio));
+
+        line-height: calc(15 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 900;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #090069ff;
+      }
+      .c-2024-online-vir-28301 {
+        width: 26.39%;
+        height: 3.47%;
+        top: 90.94%;
+        left: 1.39%;
+        opacity: 1;
+        z-index: 2;
+        transform: rotate(0deg);
+        text-align: left;
+        line-height: 0px;
+      }
+      .c-2024-online-vir-28301-0 {
+        font-size: calc(15 * var(--ratio));
+
+        line-height: calc(15 * var(--ratio));
+
+        font-family: Inter;
+        font-weight: 700;
+
+        text-decoration: none;
+        text-transform: none;
+        white-space: pre-wrap;
+        color: #090069ff;
+      }
+      .descript_lesson {
+        margin-left: 3%;
+        margin-right: 3%;
+        height: auto;
+      }
+      .moreDescript {
+        display: flex;
+        flex-direction: row;
+        row-gap: 30px;
+        column-gap: 160%;
+        margin-left: 3%;
+        margin-right: 3%;
+        position: absolute;
+        top: 93.5%;
+      }
+      .details-3234 {
+        margin-top: 4px;
+        width: 100%;
+      }
+      .wayToPay {
+        display: flex;
+        flex-direction: row;
+        column-gap: 5px;
+      }
+      @media (max-width: 480px) {
+        .rectangle-20-27255 {
+          width: 80.64%;
+          height: 670px;
+          top: 0px;
+          left: 6%;
+        }
+        .nodeBg-27255 {
+          width: 70.64%;
+          height: 340px;
+          top: 4%;
+          left: 3.7%;
+        }
+        .rectangle-21-29326 {
+          height: 400px;
+        }
+        .mrs-julia-elit-27256-0 {
+          font-size: calc(90 * var(--ratio));
+
+          line-height: calc(90 * var(--ratio));
+          left: 40%;
+        }
+        .mrs-julia-elit-27256 {
+          width: 50%;
+          left: 37%;
+          top: 90px;
+        }
+        .lessons_valuet {
+          display: grid;
+          grid-template-columns: 1fr;
+          margin: 430px 15% 10% 15%;
+          justify-items: center;
+          height: auto;
+          row-gap: 40px;
+        }
+        .lorem-ipsum-dol-27253-1 {
+          font-size: calc(30 * var(--ratio));
+
+          line-height: calc(30 * var(--ratio));
+        }
+        .chemistry-27257 {
+          width: auto;
+          left: 75%;
+          top: 150px;
+        }
+        .lorem-ipsum-dol-27253 {
+          width: 26.19%;
+          height: 160px;
+          top: 170px;
+          left: 66.57%;
+          line-height: 2px;
+        }
+        .learn-vault-30334 {
+          width: 30.94%;
+          height: 1.27%;
+          top: 400px;
+          left: 10.49%;
+        }
+        .learn-vault-30334-0 {
+          font-size: calc(52 * var(--ratio));
+          line-height: calc(36 * var(--ratio));
+        }
+        .nodeBg-3287 {
+          top: 0px;
+        }
+        .lorem-ipsum-dol-3219-0 {
+          font-size: calc(52 * var(--ratio));
+          line-height: calc(43 * var(--ratio));
+        }
+        .price--rs-10000-3222-0 {
+          font-size: calc(52 * var(--ratio));
+          line-height: calc(43 * var(--ratio));
+        }
+        .price--rs-10000-3222 {
+          width: auto;
+          margin: 6px 0px 6px 0px;
+        }
+        .lorem-ipsum-dol-3220-0 {
+          font-size: calc(28 * var(--ratio));
+          line-height: calc(28 * var(--ratio));
+        }
+        .add-to-cart-3232 {
+          padding: 13px 13px 13px 13px;
+        }
+        .add-to-cart-3232-0 {
+          font-size: calc(42 * var(--ratio));
+          line-height: calc(43 * var(--ratio));
+        }
+        .buy-now-3233 {
+          padding: 13px 13px 13px 13px;
+        }
+        .buy-now-3233-0 {
+          font-size: calc(42 * var(--ratio));
+          line-height: calc(43 * var(--ratio));
+        }
+        .details-3234 {
+          margin-top: 4px;
+          width: 100%;
+        }
+        .details-3234-0,
+        .c-20241128-3221-0 {
+          font-size: calc(35 * var(--ratio));
+
+          line-height: calc(20 * var(--ratio));
+        }
+        .your-gateway-to-30451-0 {
+          font-size: calc(40 * var(--ratio));
+
+          line-height: calc(45 * var(--ratio));
+        }
+        .moreDescript {
+          row-gap: 10px;
+
+          column-gap: 120%;
+          margin-left: 3%;
+          margin-right: 3%;
+        }
+        .line-3-27254 {
+          left: 51%;
+          top: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo-container">
+        <img
+          src="external/learnhere1939-2g5-200h.png"
+          alt="LearnHere Logo"
+          class="header__logo-image"
+        />
+        <span class="header__logo-text">LearnHere</span>
+      </div>
+
+      <div class="header__menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+      <nav class="header__nav">
+        <a href="#home" class="header__nav-link">Home</a>
+        <a href="#lessons" class="header__nav-link">Lessons</a>
+        <a href="#teachers" class="header__nav-link">Teachers</a>
+        <a href="#contact" class="header__nav-link">Contact Us</a>
+        <a href="#about" class="header__nav-link">About</a>
+      </nav>
+
+      <div class="header__auth-container">
+        <a href="#login" class="header__auth-link">Login</a> |
+        <a href="#register" class="header__auth-link">Register</a>
+        <a href="#login" class="header__auth-link">
+          <i class="fas fa-user header__account-icon"></i>
+        </a>
+      </div>
+      <div class="header__menu-icon_new" onclick="toggleMenu()">&#9776;</div>
+    </header>
+
+    <script>
+      let currentIndex = 0;
+      const images = document.querySelectorAll(".img_move"); // Corrected to select by class
+      const texts = document.querySelectorAll(".text_motive");
+
+      function showNextImage() {
+        // Hide the current image and text
+        images[currentIndex].classList.remove("active");
+        images[currentIndex].classList.add("move-left");
+        texts[currentIndex].classList.remove("active-text_motive");
+
+        // Move to the next image and text
+        currentIndex = (currentIndex + 1) % images.length;
+
+        // Show the next image and text
+        images[currentIndex].classList.remove("move-left");
+        images[currentIndex].classList.add("active");
+        texts[currentIndex].classList.add("active-text_motive");
+      }
+
+      // Initially show the first image and text
+      images[currentIndex].classList.add("active");
+      texts[currentIndex].classList.add("active-text_motive");
+
+      // Change the image and text every 4 seconds
+      setInterval(showNextImage, 4000); // Every 4 seconds
+    </script>
+
+    <div class="parent-div">
+      <div class="playlist-page-23230 pos-abs">
+        <div class="rectangle-21-29326 pos-abs"></div>
+
+        <div class="ellipse-18-325 pos-abs">
+          <div
+            class="nodeBg-325 pos-abs pos-init fill-parent image-div bg-contain bg-no-repeat"
+          ></div>
+        </div>
+
+        <div class="rectangle-20-27255 pos-abs">
+          <img
+            src="images/image3.png"
+            class="pos-abs image-div bg-no-repeat bg-crop nodeBg-27255"
+            alt="27255-ALT"
+          />
+        </div>
+
+        <div class="rectangle-92-3289 pos-abs"></div>
+
+        <div class="rectangle-86-326 pos-abs"></div>
+
+        <div class="rectangle-88-328 pos-abs"></div>
+
+        <div class="mrs-julia-elit-27256 pos-abs">
+          <!-- prettier-ignore --><span class="mrs-julia-elit-27256-0">Mrs. JULIA <br>ELIT</span>
+        </div>
+
+        <div class="chat-with-me-3212 pos-abs">
+          <!-- prettier-ignore --><span class="chat-with-me-3212-0">Chat with <br>me</span>
+        </div>
+
+        <div class="chemistry-27257 pos-abs">
+          <!-- prettier-ignore --><span class="chemistry-27257-0">CHEMISTRY</span>
+        </div>
+
+        <div class="lorem-ipsum-dol-27253 pos-abs">
+          <span class="lorem-ipsum-dol-27253-0"> Lorem, ipsum</span>
+          <p class="lorem-ipsum-dol-27253-1">
+            dolor sit amet consectetur adipisicing elit. Quas quisquam
+            ipsamsoluta hic molestiae porro maxime optio eum modi dignissimos
+            ipsa repudiandae debitissd iure id et, architectoaccusamus! Lorem
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id autem?
+            Quo dolorum alias perferendis quis, sed eum sint quaerat ipsum
+            voluptatem saepe mollitia aspernatur consequatur eius necessitatibus
+            tempore consectetur minus.
+          </p>
+        </div>
+
+        <div class="line-3-27254 pos-abs"></div>
+
+        <div class="learn-vault-30334 pos-abs">
+          <!-- prettier-ignore --><span class="learn-vault-30334-0">LEARN VAULT</span>
+        </div>
+
+        <div class="lessons_valuet">
+          <!-- Frame 551 -->
+          <section class="frame-55-3213 pos-abs_my">
+            <div class="rectangle-19-3214">
+              <img
+                src="images/image4.png"
+                class="image-div bg-no-repeat fill-parent bg-cover nodeBg-3214"
+                alt="3214-ALT"
+              />
+            </div>
+
+            <div class="union-3216">
+              <img
+                src="images/image5.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3216-ALT"
+              />
+            </div>
+
+            <div class="vector-3215">
+              <div
+                class="nodeBg-3215 pos-init fill-parent image-div bg-contain bg-no-repeat"
+              ></div>
+            </div>
+
+            <div class="union-42988">
+              <img
+                src="images/image6.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="42988-ALT"
+              />
+            </div>
+            <div class="descript_lesson">
+              <div class="lorem-ipsum-dol-3219">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3219-0">Lorem ipsum dolor sit amet consectetur adipisicing.</span>
+              </div>
+
+              <div class="price--rs-10000-3222">
+                <!-- prettier-ignore --><span class="price--rs-10000-3222-0">Price : Rs 1000.00</span>
+              </div>
+
+              <div class="lorem-ipsum-dol-3220">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3220-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis est esse natus saepe explicabo modi dignissimos, maxime et eius, voluptate sed odit deleniti mollitia eveniet porro quos facere, obcaecati omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cupiditate, ipsa nulla ratione officiis officia, ab id, fugit esse molestiae magni necessitatibus impedit quis consequuntur aut</span>
+              </div>
+
+              <div class="union-3224">
+                <img
+                  src="images/image7.png"
+                  class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                  alt="3224-ALT"
+                />
+              </div>
+
+              <div class="moreDescript">
+                <div class="details-3234">
+                  <!-- prettier-ignore --><span class="details-3234-0">Details>></span>
+                </div>
+
+                <div class="c-20241128-3221">
+                  <!-- prettier-ignore --><span class="c-20241128-3221-0">2024.11.28</span>
+                </div>
+              </div>
+              <div class="rectangle-25-3223"></div>
+
+              <div class="rectangle-26-3230"></div>
+
+              <div class="vector-5-3231">
+                <div
+                  class="nodeBg-3231 pos-init fill-parent image-div bg-contain bg-no-repeat"
+                ></div>
+              </div>
+
+              <div class="wayToPay">
+                <div class="add-to-cart-3232">
+                  <!-- prettier-ignore --><span class="add-to-cart-3232-0">ADD TO CART</span>
+                </div>
+
+                <div class="buy-now-3233">
+                  <!-- prettier-ignore --><span class="buy-now-3233-0">BUY NOW</span>
+                </div>
+              </div>
+
+              <!-- <div class="union-3397">
+              <img
+                src="images/image8.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3397-ALT"
+              />
+            </div> -->
+            </div>
+          </section>
+          <!-- Frame 551 -->
+          <section class="frame-55-3213 pos-abs_my">
+            <div class="rectangle-19-3214">
+              <img
+                src="images/image4.png"
+                class="image-div bg-no-repeat fill-parent bg-cover nodeBg-3214"
+                alt="3214-ALT"
+              />
+            </div>
+
+            <div class="union-3216">
+              <img
+                src="images/image5.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3216-ALT"
+              />
+            </div>
+
+            <div class="vector-3215">
+              <div
+                class="nodeBg-3215 pos-init fill-parent image-div bg-contain bg-no-repeat"
+              ></div>
+            </div>
+
+            <div class="union-42988">
+              <img
+                src="images/image6.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="42988-ALT"
+              />
+            </div>
+            <div class="descript_lesson">
+              <div class="lorem-ipsum-dol-3219">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3219-0">Lorem ipsum dolor sit amet consectetur adipisicing.</span>
+              </div>
+
+              <div class="price--rs-10000-3222">
+                <!-- prettier-ignore --><span class="price--rs-10000-3222-0">Price : Rs 1000.00</span>
+              </div>
+
+              <div class="lorem-ipsum-dol-3220">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3220-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis est esse natus saepe explicabo modi dignissimos, maxime et eius, voluptate sed odit deleniti mollitia eveniet porro quos facere, obcaecati omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cupiditate, ipsa nulla ratione officiis officia, ab id, fugit esse molestiae magni necessitatibus impedit quis consequuntur aut</span>
+              </div>
+
+              <div class="union-3224">
+                <img
+                  src="images/image7.png"
+                  class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                  alt="3224-ALT"
+                />
+              </div>
+
+              <div class="moreDescript">
+                <div class="details-3234">
+                  <!-- prettier-ignore --><span class="details-3234-0">Details>></span>
+                </div>
+
+                <div class="c-20241128-3221">
+                  <!-- prettier-ignore --><span class="c-20241128-3221-0">2024.11.28</span>
+                </div>
+              </div>
+              <div class="rectangle-25-3223"></div>
+
+              <div class="rectangle-26-3230"></div>
+
+              <div class="vector-5-3231">
+                <div
+                  class="nodeBg-3231 pos-init fill-parent image-div bg-contain bg-no-repeat"
+                ></div>
+              </div>
+
+              <div class="wayToPay">
+                <div class="add-to-cart-3232">
+                  <!-- prettier-ignore --><span class="add-to-cart-3232-0">ADD TO CART</span>
+                </div>
+
+                <div class="buy-now-3233">
+                  <!-- prettier-ignore --><span class="buy-now-3233-0">BUY NOW</span>
+                </div>
+              </div>
+
+              <!-- <div class="union-3397">
+              <img
+                src="images/image8.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3397-ALT"
+              />
+            </div> -->
+            </div>
+          </section>
+          <!-- Frame 551 -->
+          <section class="frame-55-3213 pos-abs_my">
+            <div class="rectangle-19-3214">
+              <img
+                src="images/image4.png"
+                class="image-div bg-no-repeat fill-parent bg-cover nodeBg-3214"
+                alt="3214-ALT"
+              />
+            </div>
+
+            <div class="union-3216">
+              <img
+                src="images/image5.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3216-ALT"
+              />
+            </div>
+
+            <div class="vector-3215">
+              <div
+                class="nodeBg-3215 pos-init fill-parent image-div bg-contain bg-no-repeat"
+              ></div>
+            </div>
+
+            <div class="union-42988">
+              <img
+                src="images/image6.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="42988-ALT"
+              />
+            </div>
+            <div class="descript_lesson">
+              <div class="lorem-ipsum-dol-3219">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3219-0">Lorem ipsum dolor sit amet consectetur adipisicing.</span>
+              </div>
+
+              <div class="price--rs-10000-3222">
+                <!-- prettier-ignore --><span class="price--rs-10000-3222-0">Price : Rs 1000.00</span>
+              </div>
+
+              <div class="lorem-ipsum-dol-3220">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3220-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis est esse natus saepe explicabo modi dignissimos, maxime et eius, voluptate sed odit deleniti mollitia eveniet porro quos facere, obcaecati omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cupiditate, ipsa nulla ratione officiis officia, ab id, fugit esse molestiae magni necessitatibus impedit quis consequuntur aut</span>
+              </div>
+
+              <div class="union-3224">
+                <img
+                  src="images/image7.png"
+                  class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                  alt="3224-ALT"
+                />
+              </div>
+
+              <div class="moreDescript">
+                <div class="details-3234">
+                  <!-- prettier-ignore --><span class="details-3234-0">Details>></span>
+                </div>
+
+                <div class="c-20241128-3221">
+                  <!-- prettier-ignore --><span class="c-20241128-3221-0">2024.11.28</span>
+                </div>
+              </div>
+              <div class="rectangle-25-3223"></div>
+
+              <div class="rectangle-26-3230"></div>
+
+              <div class="vector-5-3231">
+                <div
+                  class="nodeBg-3231 pos-init fill-parent image-div bg-contain bg-no-repeat"
+                ></div>
+              </div>
+
+              <div class="wayToPay">
+                <div class="add-to-cart-3232">
+                  <!-- prettier-ignore --><span class="add-to-cart-3232-0">ADD TO CART</span>
+                </div>
+
+                <div class="buy-now-3233">
+                  <!-- prettier-ignore --><span class="buy-now-3233-0">BUY NOW</span>
+                </div>
+              </div>
+
+              <!-- <div class="union-3397">
+              <img
+                src="images/image8.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3397-ALT"
+              />
+            </div> -->
+            </div>
+          </section>
+          <!-- Frame 551 -->
+          <section class="frame-55-3213 pos-abs_my">
+            <div class="rectangle-19-3214">
+              <img
+                src="images/image4.png"
+                class="image-div bg-no-repeat fill-parent bg-cover nodeBg-3214"
+                alt="3214-ALT"
+              />
+            </div>
+
+            <div class="union-3216">
+              <img
+                src="images/image5.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3216-ALT"
+              />
+            </div>
+
+            <div class="vector-3215">
+              <div
+                class="nodeBg-3215 pos-init fill-parent image-div bg-contain bg-no-repeat"
+              ></div>
+            </div>
+
+            <div class="union-42988">
+              <img
+                src="images/image6.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="42988-ALT"
+              />
+            </div>
+            <div class="descript_lesson">
+              <div class="lorem-ipsum-dol-3219">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3219-0">Lorem ipsum dolor sit amet consectetur adipisicing.</span>
+              </div>
+
+              <div class="price--rs-10000-3222">
+                <!-- prettier-ignore --><span class="price--rs-10000-3222-0">Price : Rs 1000.00</span>
+              </div>
+
+              <div class="lorem-ipsum-dol-3220">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3220-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis est esse natus saepe explicabo modi dignissimos, maxime et eius, voluptate sed odit deleniti mollitia eveniet porro quos facere, obcaecati omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cupiditate, ipsa nulla ratione officiis officia, ab id, fugit esse molestiae magni necessitatibus impedit quis consequuntur aut</span>
+              </div>
+
+              <div class="union-3224">
+                <img
+                  src="images/image7.png"
+                  class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                  alt="3224-ALT"
+                />
+              </div>
+
+              <div class="moreDescript">
+                <div class="details-3234">
+                  <!-- prettier-ignore --><span class="details-3234-0">Details>></span>
+                </div>
+
+                <div class="c-20241128-3221">
+                  <!-- prettier-ignore --><span class="c-20241128-3221-0">2024.11.28</span>
+                </div>
+              </div>
+              <div class="rectangle-25-3223"></div>
+
+              <div class="rectangle-26-3230"></div>
+
+              <div class="vector-5-3231">
+                <div
+                  class="nodeBg-3231 pos-init fill-parent image-div bg-contain bg-no-repeat"
+                ></div>
+              </div>
+
+              <div class="wayToPay">
+                <div class="add-to-cart-3232">
+                  <!-- prettier-ignore --><span class="add-to-cart-3232-0">ADD TO CART</span>
+                </div>
+
+                <div class="buy-now-3233">
+                  <!-- prettier-ignore --><span class="buy-now-3233-0">BUY NOW</span>
+                </div>
+              </div>
+
+              <!-- <div class="union-3397">
+              <img
+                src="images/image8.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3397-ALT"
+              />
+            </div> -->
+            </div>
+          </section>
+          <!-- Frame 551 -->
+          <section class="frame-55-3213 pos-abs_my">
+            <div class="rectangle-19-3214">
+              <img
+                src="images/image4.png"
+                class="image-div bg-no-repeat fill-parent bg-cover nodeBg-3214"
+                alt="3214-ALT"
+              />
+            </div>
+
+            <div class="union-3216">
+              <img
+                src="images/image5.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3216-ALT"
+              />
+            </div>
+
+            <div class="vector-3215">
+              <div
+                class="nodeBg-3215 pos-init fill-parent image-div bg-contain bg-no-repeat"
+              ></div>
+            </div>
+
+            <div class="union-42988">
+              <img
+                src="images/image6.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="42988-ALT"
+              />
+            </div>
+            <div class="descript_lesson">
+              <div class="lorem-ipsum-dol-3219">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3219-0">Lorem ipsum dolor sit amet consectetur adipisicing.</span>
+              </div>
+
+              <div class="price--rs-10000-3222">
+                <!-- prettier-ignore --><span class="price--rs-10000-3222-0">Price : Rs 1000.00</span>
+              </div>
+
+              <div class="lorem-ipsum-dol-3220">
+                <!-- prettier-ignore --><span class="lorem-ipsum-dol-3220-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis est esse natus saepe explicabo modi dignissimos, maxime et eius, voluptate sed odit deleniti mollitia eveniet porro quos facere, obcaecati omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cupiditate, ipsa nulla ratione officiis officia, ab id, fugit esse molestiae magni necessitatibus impedit quis consequuntur aut</span>
+              </div>
+
+              <div class="union-3224">
+                <img
+                  src="images/image7.png"
+                  class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                  alt="3224-ALT"
+                />
+              </div>
+
+              <div class="moreDescript">
+                <div class="details-3234">
+                  <!-- prettier-ignore --><span class="details-3234-0">Details>></span>
+                </div>
+
+                <div class="c-20241128-3221">
+                  <!-- prettier-ignore --><span class="c-20241128-3221-0">2024.11.28</span>
+                </div>
+              </div>
+              <div class="rectangle-25-3223"></div>
+
+              <div class="rectangle-26-3230"></div>
+
+              <div class="vector-5-3231">
+                <div
+                  class="nodeBg-3231 pos-init fill-parent image-div bg-contain bg-no-repeat"
+                ></div>
+              </div>
+
+              <div class="wayToPay">
+                <div class="add-to-cart-3232">
+                  <!-- prettier-ignore --><span class="add-to-cart-3232-0">ADD TO CART</span>
+                </div>
+
+                <div class="buy-now-3233">
+                  <!-- prettier-ignore --><span class="buy-now-3233-0">BUY NOW</span>
+                </div>
+              </div>
+
+              <!-- <div class="union-3397">
+              <img
+                src="images/image8.png"
+                class="pos-init fill-parent bg-contain bg-no-repeat image-div object-fit"
+                alt="3397-ALT"
+              />
+            </div> -->
+            </div>
+          </section>
+        </div>
+        <div class="secondLine">
+          <div class="rectangle-22-29329 pos-absSecond"></div>
+
+          <div class="rectangle-23-29330 pos-absSecond"></div>
+
+          <div class="rectangle-24-29331 pos-absSecond"></div>
+
+          <div class="your-gateway-to-30451 pos-absSecond">
+            <!-- prettier-ignore --><span class="your-gateway-to-30451-0">Your gateway to success! Explore lesson videos, pass paper, and extra materials—all in one place. Boost your understanding and master your studies with ease.</span>
+          </div>
+        </div>
+
+        <div class="thirdLine">
+          <div class="rectangle-90-3285 pos-abs">
+            <div
+              class="nodeBg-3285 pos-abs pos-init fill-parent image-div bg-contain bg-no-repeat"
+            ></div>
+          </div>
+
+          <div class="rectangle-91-3287 pos-abs">
+            <div
+              class="nodeBg-3287 pos-abs pos-init fill-parent image-div bg-contain bg-no-repeat"
+            ></div>
+          </div>
+
+          <div class="rectangle-89-3283 pos-abs">
+            <img
+              src="images/image14.png"
+              class="pos-abs image-div bg-no-repeat fill-parent bg-cover nodeBg-3283"
+              alt="3283-ALT"
+            />
+          </div>
+
+          <div class="im-here-to-guid-3284 pos-abs">
+            <span class="im-here-to-guid-3284-0"
+              >I’m here to guide you every step of the way. If you have any
+              questions, need clarification, or just want to discuss a topic
+              further, feel free to reach out. Let’s make learning enjoyable and
+              successful together!</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="footer1">
+        <div class="footer-left">
+          <span class="footer-logoName">LEARNHERE</span><br />
+          <span>e-Learning Platform</span>
+        </div>
+        <div class="footer-right">
+          <span>©2024 Online Virtual Learning. All Rights Reserved.</span>
+          <span>Web Development Company -</span>
+          <span class="company-name">DesignMosaic.S</span>
+        </div>
+      </div>
+      <div class="footer2"><div class="footer_bottom"></div></div>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        const nav = document.querySelector(".header__nav");
+        nav.classList.toggle("open");
+      }
+    </script>
+  </body>
+</html>

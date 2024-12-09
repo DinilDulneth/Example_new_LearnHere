@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Move Div Animation</title>
+    <style>
+      /* Reset styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+
+      /* Div that moves */
+      .animated-div {
+        width: 200px;
+        height: 100px;
+        background-color: #3498db;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        position: relative;
+        animation: slideIn 1s ease-out forwards;
+      }
+
+      /* Keyframes for slide-in animation */
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%); /* Start off-screen to the right */
+        }
+        to {
+          transform: translateX(0); /* Move to its original position */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="animated-div">Hello!</div>
+  </body>
+</html>
